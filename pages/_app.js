@@ -1,7 +1,11 @@
-import Layout from "../components/layout";
+import Layout from "../src/components/layout";
 import { Amplify } from "aws-amplify";
 
 import awsExports from "../src/aws-exports";
+
+import "@aws-amplify/ui-react/styles.css";
+
+import { Authenticator } from "@aws-amplify/ui-react";
 
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,15 +19,19 @@ Amplify.configure({ ...awsExports, Analytics: { disabled: true } });
 function MyApp({ Component, pageProps }) {
 	return (
 		<AuthContextProvider>
-			<DrinkContextProvider>
-				<CartContextProvider>
-					<OrderContextProvider>
-						<Layout>
-							<Component {...pageProps} />
-						</Layout>
-					</OrderContextProvider>
-				</CartContextProvider>
-			</DrinkContextProvider>
+			<Authenticator
+				variation="modal"
+				signUpAttributes={["email", "phone_number", "name"]}>
+				<DrinkContextProvider>
+					<CartContextProvider>
+						<OrderContextProvider>
+							<Layout>
+								<Component {...pageProps} />
+							</Layout>
+						</OrderContextProvider>
+					</CartContextProvider>
+				</DrinkContextProvider>
+			</Authenticator>
 		</AuthContextProvider>
 	);
 }

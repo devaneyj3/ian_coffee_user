@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./profile.module.scss";
-import { useAuthContext } from "../../src/contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 import Order from "../Order";
 

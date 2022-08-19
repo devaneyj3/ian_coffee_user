@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./featured.module.scss";
-import { useDrinkContext } from "../../src/contexts/DrinkContext";
+import { useDrinkContext } from "../../contexts/DrinkContext";
 
 import {
 	CardImg,
@@ -14,9 +14,9 @@ import {
 
 import Link from "next/link";
 
-import { useAuthContext } from "../../src/contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
-import { useCartContext } from "../../src/contexts/CartContext";
+import { useCartContext } from "../../contexts/CartContext";
 
 import Quantity from "../Quantity";
 
@@ -49,13 +49,8 @@ export default function Featured() {
 								<CardText>{description}</CardText>
 								<Quantity setQuantity={setQuantity} />
 								<p>${price}</p>
-								{!dbUser ? (
-									<Button>
-										<Link href="/sign_in">Add to Cart</Link>
-									</Button>
-								) : (
-									<Button onClick={() => addItem(drink)}>Add to Cart</Button>
-								)}
+
+								<Button onClick={() => addItem(drink)}>Add to Cart</Button>
 							</CardBody>
 						</Card>
 					);

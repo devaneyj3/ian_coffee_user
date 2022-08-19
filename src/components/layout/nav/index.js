@@ -1,22 +1,24 @@
 import React from "react";
 
+import { Button } from "reactstrap";
 import Link from "next/link";
 
 import classes from "./nav.module.scss";
 
 import { useRouter } from "next/router";
 
-import { useAuthContext } from "../../../src/contexts/AuthContext";
+import { Auth } from "aws-amplify";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 export default function Nav() {
 	const router = useRouter();
 
-	const { authSignOut, dbUser } = useAuthContext();
+	const { dbUser } = useAuthContext();
 
-	//sign customer out
-	const signOut = async () => {
-		await authSignOut();
+	const authSignOut = async () => {
+		await Auth.signOut();
 	};
+
 	return (
 		<nav className={classes.nav_container}>
 			<video autoPlay muted loop className={classes.video}>
@@ -27,6 +29,9 @@ export default function Nav() {
 				<Link href="/menu">Menu</Link>
 				<Link href="/profile">Profile</Link>
 				<Link href="/cart">Cart</Link>
+				<Button color="danger" onClick={() => authSignOut()}>
+					Signout
+				</Button>
 			</ul>
 			<section className={classes.info}>
 				<h1 className={classes.greeting}>Welcome to Ian's Coffee</h1>

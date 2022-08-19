@@ -3,7 +3,7 @@ import React from "react";
 import { useCartContext } from "../../src/contexts/CartContext";
 
 import { Alert, Button } from "reactstrap";
-import CartItem from "../../components/CartItem/CartItem";
+import CartItem from "../../src/components/CartItem/CartItem";
 import classes from "./cart.module.scss";
 import { useOrderContext } from "../../src/contexts/OrderContext";
 

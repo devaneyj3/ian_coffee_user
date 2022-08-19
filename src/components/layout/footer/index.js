@@ -4,7 +4,7 @@ import classes from "./footer.module.scss";
 
 import Link from "next/link";
 
-import { useAuthContext } from "../../../src/contexts/AuthContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 export default function Footer() {
 	const { authUser } = useAuthContext();

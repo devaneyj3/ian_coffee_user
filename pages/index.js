@@ -1,14 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
-import Featured from "../components/featured";
-import PageLayout from "../components/layout/page_layout";
-import Reviews from "../components/reviews";
+import Featured from "../src/components/featured";
+import PageLayout from "../src/components/layout/page_layout";
+import Reviews from "../src/components/reviews";
 import classes from "../styles/home.module.scss";
 
 import Link from "next/link";
 import { Button } from "reactstrap";
 
+import { useAuthContext } from "../src/contexts/AuthContext";
+
 export default function Home() {
+	const { dbUser } = useAuthContext();
+	console.log(dbUser);
 	return (
 		<PageLayout>
 			<section className={classes.featured}>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import moment from "moment";
-import { useOrderContext } from "../../src/contexts/OrderContext";
+import { useOrderContext } from "../../contexts/OrderContext";
 
 import classes from "./order.module.scss";
 import { useRouter } from "next/router";
