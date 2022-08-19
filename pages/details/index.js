@@ -18,7 +18,7 @@ export default function Details() {
 
 	useEffect(() => {
 		fetchOrders(id).then(setOrderDetails);
-	}, [id]);
+	}, []);
 
 	return (
 		<div className={classes.detail_container}>
