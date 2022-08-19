@@ -4,7 +4,7 @@ import { useOrderContext } from "../../src/contexts/OrderContext";
 
 import { useRouter } from "next/router";
 
-import CartItem from "../../components/CartItem/CartItem";
+import CartItem from "../../src/components/CartItem/CartItem";
 
 import { Button } from "reactstrap";
 
