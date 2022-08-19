@@ -1,0 +1,17 @@
+.featured {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	flex-wrap: wrap;
+	.card {
+		margin: 10px;
+		.icon {
+			display: flex;
+			justify-content: end;
+			cursor: pointer;
+		}
+	}
+}
+.btn {
+	margin-top: 30px;
+}

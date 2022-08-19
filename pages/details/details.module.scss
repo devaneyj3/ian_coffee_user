@@ -1,0 +1,11 @@
+.detail_container {
+	margin: 50px;
+	text-align: center;
+	.order_list {
+		margin: 50px;
+	}
+	.details {
+		display: flex;
+		justify-content: left;
+	}
+}

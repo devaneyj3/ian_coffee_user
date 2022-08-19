@@ -1,0 +1,16 @@
+.cartContainer {
+	margin: 50px;
+	.summary {
+		display: flex;
+		justify-content: left;
+		.total {
+			font-size: 1.5rem;
+			margin-right: 10px;
+		}
+		.length {
+			font-size: 1.5rem;
+
+			margin-right: 10px;
+		}
+	}
+}
