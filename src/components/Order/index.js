@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import moment from "moment";
 import { useOrderContext } from "../../contexts/OrderContext";
@@ -9,6 +9,14 @@ import { useRouter } from "next/router";
 export default function Order() {
 	const { orders, fetchOrders } = useOrderContext();
 	const router = useRouter();
+	console.log(orders);
+	// useEffect(() => {
+	// 	const getOrders = async () => {
+	// 		const orders = await fetchOrders(orders.id);
+	// 		console.log("orders", orders);
+	// 	};
+	// 	getOrders();
+	// }, []);
 
 	return (
 		<section className={classes.order_container}>

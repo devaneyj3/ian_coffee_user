@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useCartContext } from "../../src/contexts/CartContext";
 
@@ -8,7 +8,7 @@ import classes from "./cart.module.scss";
 import { useOrderContext } from "../../src/contexts/OrderContext";
 
 export default function Cart() {
-	const { userCart, userCartItems, totalPrice } = useCartContext();
+	const { userCart, userCartItems, cartSubtotal } = useCartContext();
 	const { addCartToOrder } = useOrderContext();
 	const [message, setMessage] = React.useState(null);
 
@@ -21,10 +21,7 @@ export default function Cart() {
 		<div className={classes.cartContainer}>
 			<section className={classes.summary}>
 				<section className={classes.total}>
-					<p>
-						${totalPrice.toFixed(2)}
-						{"  "}
-					</p>
+					<p>${cartSubtotal}</p>
 					<Button color="danger">Delete Cart</Button>
 				</section>
 				<section className={classes.length}>

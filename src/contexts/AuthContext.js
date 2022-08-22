@@ -1,14 +1,11 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import { Auth, DataStore } from "aws-amplify";
 import { User } from "../models";
-import { useRouter } from "next/router";
 
 const AuthContext = createContext({});
 
 const AuthContextProvider = ({ children }) => {
 	const [dbUser, setDbUser] = useState(null);
-
-	const router = useRouter();
 
 	useEffect(() => {
 		addAuthUserToDataStore();
@@ -32,9 +29,11 @@ const AuthContextProvider = ({ children }) => {
 					phone: phone_number,
 				})
 			);
+			console.log("newUser AuthContext line 32", newUser);
 			setDbUser(newUser);
 		} else {
 			setDbUser(userExists[0]);
+			console.log("userExist AuthContext line 36", userExists[0]);
 		}
 	};
 

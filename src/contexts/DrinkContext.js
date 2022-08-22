@@ -10,7 +10,8 @@ export const DrinkContextProvider = ({ children }) => {
 	useEffect(() => {
 		const fetchDrinks = async () => {
 			const response = await DataStore.query(Drink);
-			console.log("response", response);
+			// await DataStore.clear();
+			// await DataStore.start()
 			setDrinks(response);
 		};
 		fetchDrinks();
@@ -23,40 +24,14 @@ export const DrinkContextProvider = ({ children }) => {
 		setDrinks([...drinks, newDrink]);
 	};
 
-	const updateDrink = async (drink) => {
-		let { id, name, description, price } = drink;
+	const getDrinkInfo = async (id) => {
+		const drink = await DataStore.query(Drink, id);
 
-		price = parseFloat(price);
-		//update the drink in the datastore
-		const orginal = await DataStore.query(Drink, id);
-		await DataStore.save(
-			Drink.copyOf(orginal, (updated) => {
-				updated.name = name;
-				updated.description = description;
-				updated.price = price;
-			})
-		);
-		//update the drink in the state
-		setDrinks(
-			drinks.map((d) => {
-				if (d.id === drink.id) {
-					return drink;
-				}
-				return d;
-			})
-		);
-	};
-
-	const removeDrink = (id) => {
-		//remove the drink from the datastore
-		DataStore.delete(Drink, id);
-		//remove the drink from the state
-		setDrinks(drinks.filter((d) => d.id !== id));
+		return drink;
 	};
 
 	return (
-		<DrinkContext.Provider
-			value={{ drinks, addDrink, removeDrink, updateDrink }}>
+		<DrinkContext.Provider value={{ drinks, addDrink, getDrinkInfo }}>
 			{children}
 		</DrinkContext.Provider>
 	);

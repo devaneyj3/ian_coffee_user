@@ -10,7 +10,7 @@ const OrderContext = createContext();
 export const OrderContextProvider = ({ children }) => {
 	const [orders, setOrders] = useState([]);
 	const { dbUser } = useAuthContext();
-	const { totalPrice, userCartItems, setUserCartItems } = useCartContext();
+	const { cartSubtotal, userCartItems, setUserCartItems } = useCartContext();
 
 	useEffect(() => {
 		//check if order exists
@@ -25,20 +25,21 @@ export const OrderContextProvider = ({ children }) => {
 		const newOrder = await DataStore.save(
 			new Order({
 				userID: dbUser.sub,
-				total: totalPrice,
+				total: cartSubtotal,
 				status: "NEW",
 			})
 		);
 		await Promise.all(
-			userCartItems.map((cartItem) =>
+			userCartItems.map((cartItem) => {
 				DataStore.save(
 					new OrderDrink({
 						orderID: newOrder.id,
-						Drink: cartItem,
+						drinkID: cartItem.drinkID,
 						quantity: cartItem.quantity,
+						totalDrinkPrice: cartItem.totalDrinkPrice,
 					})
-				)
-			)
+				);
+			})
 		);
 
 		setOrders([...orders, newOrder]);
@@ -55,7 +56,6 @@ export const OrderContextProvider = ({ children }) => {
 		const orderItems = await DataStore.query(OrderDrink, (orderItem) =>
 			orderItem.orderID("eq", orderID)
 		);
-
 		return { ...order, cart: orderItems };
 	};
 

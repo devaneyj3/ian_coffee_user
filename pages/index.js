@@ -12,7 +12,6 @@ import { useAuthContext } from "../src/contexts/AuthContext";
 
 export default function Home() {
 	const { dbUser } = useAuthContext();
-	console.log(dbUser);
 	return (
 		<PageLayout>
 			<section className={classes.featured}>

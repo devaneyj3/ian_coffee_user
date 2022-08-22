@@ -25,8 +25,8 @@ export const CartContextProvider = ({ children }) => {
 		}
 	}, [userCart]);
 
-	const totalPrice = userCartItems.reduce(
-		(sum, cartItems) => sum + cartItems.quantity * cartItems.Drink.price,
+	const cartSubtotal = userCartItems.reduce(
+		(sum, cartItems) => sum + cartItems.totalDrinkPrice,
 		0
 	);
 
@@ -51,9 +51,11 @@ export const CartContextProvider = ({ children }) => {
 		const cartItem = new CartItem({
 			cartID: cartId,
 			quantity: quantity,
-			Drink: product,
+			drinkID: product.id,
+			totalDrinkPrice: product.price * quantity,
 		});
 		await DataStore.save(cartItem);
+
 		setUserCartItems([...userCartItems, cartItem]);
 	};
 
@@ -63,7 +65,7 @@ export const CartContextProvider = ({ children }) => {
 				userCart,
 				userCartItems,
 				addToCart,
-				totalPrice,
+				cartSubtotal,
 				setUserCartItems,
 			}}>
 			{children}

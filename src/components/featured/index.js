@@ -25,8 +25,6 @@ export default function Featured() {
 	const [message, setMessage] = useState(null);
 	const { drinks } = useDrinkContext();
 
-	const { dbUser } = useAuthContext();
-
 	const { addToCart, userCart } = useCartContext();
 
 	const addItem = async (drink) => {
