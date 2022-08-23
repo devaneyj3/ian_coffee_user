@@ -14,6 +14,8 @@ const AuthContextProvider = ({ children }) => {
 	const addAuthUserToDataStore = async () => {
 		const user = await Auth.currentAuthenticatedUser({ bypassCache: true });
 
+		console.log(user);
+
 		const { attributes } = user;
 		const { sub, email, phone_number, name } = attributes;
 

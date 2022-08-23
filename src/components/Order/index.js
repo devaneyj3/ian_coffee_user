@@ -7,17 +7,9 @@ import classes from "./order.module.scss";
 import { useRouter } from "next/router";
 
 export default function Order() {
-	const { orders, fetchOrders } = useOrderContext();
+	const { orders } = useOrderContext();
 	const router = useRouter();
 	console.log(orders);
-	// useEffect(() => {
-	// 	const getOrders = async () => {
-	// 		const orders = await fetchOrders(orders.id);
-	// 		console.log("orders", orders);
-	// 	};
-	// 	getOrders();
-	// }, []);
-
 	return (
 		<section className={classes.order_container}>
 			<h4>Order History</h4>
@@ -42,7 +34,7 @@ export default function Order() {
 							<p>&#8226;</p>
 							<p>{order.status}</p>
 							<p>&#8226;</p>
-							<p>${order.total}</p>
+							<p>${order.total.toFixed(2)}</p>
 						</div>
 					);
 				})}

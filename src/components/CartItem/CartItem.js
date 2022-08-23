@@ -15,10 +15,9 @@ export default function CartItem({ product }) {
 		};
 		getDrink();
 	}, []);
-	console.log("drink", product);
 	return (
 		<div>
-			{product ? (
+			{product && drink ? (
 				<div className={classes.product}>
 					<p>{product.quantity}</p>
 					<p>{drink.name}</p>
