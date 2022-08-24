@@ -1,20 +1,16 @@
-.order_container {
+.orders_container {
 	width: 50%;
-	display: flex;
-	justify-items: center;
-	align-items: center;
-	flex-direction: column;
 	margin: 20px;
-	.order {
-		display: flex;
-		width: 75%;
-		margin: 10px;
-		justify-content: space-around;
-		cursor: pointer;
+	text-align: center;
+	.order_container {
 		border: 1px solid #ccc;
 		border-radius: 10px;
-		.btn_container {
-			display: block;
-		}
+		margin: 20px;
+	}
+	.info {
+		font-weight: bold;
+		display: flex;
+		margin: 10px;
+		justify-content: space-around;
 	}
 }
